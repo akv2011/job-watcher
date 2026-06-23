@@ -181,11 +181,15 @@ companies:
   - { name: Palantir, provider: lever, slug: palantir }
   - { name: Amplemarket, provider: greenhouse, slug: amplemarket }
 
-  # ── Big-tech (verified working over plain HTTP, 2026-06-23) ──
+  # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
-  - { name: Microsoft, provider: microsoft, query: "AI" }            # Eightfold pcsx JSON API
+  - { name: Microsoft, provider: eightfold, host: apply.careers.microsoft.com, domain: microsoft.com, query: "AI" }
+  - { name: Qualcomm, provider: eightfold, host: careers.qualcomm.com, domain: qualcomm.com, query: "engineer" }
   - { name: Salesforce, provider: workday, host: salesforce.wd12.myworkdayjobs.com, tenant: salesforce, site: External_Career_Site, searchText: "AI" }
   - { name: Nvidia, provider: workday, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite, searchText: "AI" }
+  - { name: Adobe, provider: workday, host: adobe.wd5.myworkdayjobs.com, tenant: adobe, site: external_experienced, searchText: "engineer" }
+  - { name: Micron, provider: workday, host: micron.wd1.myworkdayjobs.com, tenant: micron, site: External, searchText: "engineer" }
+  - { name: Broadcom, provider: workday, host: broadcom.wd1.myworkdayjobs.com, tenant: broadcom, site: External_Career, searchText: "engineer" }
 
   # ── Financial / banking (Workday, verified 2026-06-23) ──
   - { name: Citi, provider: workday, host: citi.wd5.myworkdayjobs.com, tenant: citi, site: "2", searchText: "engineer" }

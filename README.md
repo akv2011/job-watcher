@@ -80,11 +80,11 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 | Provider | Status |
 |----------|--------|
 | greenhouse, ashby, lever | ✅ stable public JSON |
-| workday (Salesforce, Nvidia, Citi, Morgan Stanley, PayPal, Mastercard, BlackRock, Deutsche Bank) | ✅ public CXS API |
+| workday (Salesforce, Nvidia, Adobe, Micron, Broadcom, Citi, Morgan Stanley, PayPal, Mastercard, BlackRock, Deutsche Bank) | ✅ public CXS API |
 | oracle (American Express) | ✅ Oracle Recruiting Cloud REST |
 | amazon | ✅ public `search.json` |
-| microsoft | ✅ Eightfold `pcsx` JSON API (`apply.careers.microsoft.com`) |
-| apple, google, meta, eightfold (Netflix/Uber) | 🚧 phase-2, **disabled** — need a headless browser or unstable. See `companies.yml` notes. |
+| eightfold (Microsoft, Qualcomm) | ✅ Eightfold `pcsx` JSON API |
+| apple, google, meta, eightfold (Netflix/Uber) | 🚧 phase-2, **disabled** — bot-blocked / need a headless browser. See `companies.yml` notes. |
 
 > Big-tech reality (verified 2026-06-23, incl. a live browser session): Amazon,
 > Microsoft, Salesforce, Nvidia work cleanly over plain HTTP. Apple loads results
