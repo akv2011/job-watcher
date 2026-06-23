@@ -26,6 +26,7 @@ import ashby from './providers/ashby.mjs';
 import lever from './providers/lever.mjs';
 import workday from './providers/workday.mjs';
 import oracle from './providers/oracle.mjs';
+import careershome from './providers/careershome.mjs';
 import amazon from './providers/amazon.mjs';
 import apple from './providers/apple.mjs';
 import google from './providers/google.mjs';
@@ -33,7 +34,7 @@ import eightfold from './providers/eightfold.mjs';
 import meta from './providers/meta.mjs';
 
 const PROVIDERS = {
-  greenhouse, ashby, lever, workday, oracle,
+  greenhouse, ashby, lever, workday, oracle, careershome,
   amazon, apple, google, eightfold, meta,
 };
 

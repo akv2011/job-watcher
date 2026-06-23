@@ -190,6 +190,9 @@ companies:
   - { name: Adobe, provider: workday, host: adobe.wd5.myworkdayjobs.com, tenant: adobe, site: external_experienced, searchText: "engineer" }
   - { name: Micron, provider: workday, host: micron.wd1.myworkdayjobs.com, tenant: micron, site: External, searchText: "engineer" }
   - { name: Broadcom, provider: workday, host: broadcom.wd1.myworkdayjobs.com, tenant: broadcom, site: External_Career, searchText: "engineer" }
+  - { name: Intel, provider: workday, host: intel.wd1.myworkdayjobs.com, tenant: intel, site: External, searchText: "engineer" }
+  - { name: AMD, provider: careershome, host: careers.amd.com, keywords: "engineer" }
+  # Arm: careers.arm.com is iCIMS with a redirecting API — no clean endpoint found.
 
   # ── Financial / banking (Workday, verified 2026-06-23) ──
   - { name: Citi, provider: workday, host: citi.wd5.myworkdayjobs.com, tenant: citi, site: "2", searchText: "engineer" }
