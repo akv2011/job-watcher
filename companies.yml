@@ -202,9 +202,14 @@ companies:
   - { name: BlackRock, provider: workday, host: blackrock.wd1.myworkdayjobs.com, tenant: blackrock, site: BlackRock_Professional, searchText: "engineer" }
   - { name: Deutsche Bank, provider: workday, host: db.wd3.myworkdayjobs.com, tenant: db, site: DBWebsite, searchText: "engineer" }
   - { name: American Express, provider: oracle, host: egug.fa.us2.oraclecloud.com, site: CX_1, jobUrlBase: "https://careers.americanexpress.com/en/sites/CX_1/job" }
-  # Wells Fargo: careers site is bot-protected (403) + non-Workday (Phenom) — no
-  # clean public endpoint found. Goldman/Capital One/PNC/Truist/Fidelity are on
-  # Workday but under site paths not yet resolved (return 422). Re-probe later.
+  - { name: Capital One, provider: workday, host: capitalone.wd12.myworkdayjobs.com, tenant: capitalone, site: Capital_One, searchText: "engineer" }
+  - { name: PNC, provider: workday, host: pnc.wd5.myworkdayjobs.com, tenant: pnc, site: External, searchText: "engineer" }
+  - { name: Truist, provider: workday, host: truist.wd1.myworkdayjobs.com, tenant: truist, site: Careers, searchText: "engineer" }
+  - { name: Fidelity, provider: workday, host: fmr.wd1.myworkdayjobs.com, tenant: fmr, site: FidelityCareers, searchText: "engineer" }
+  # Still out (need a browser or auth, not plain HTTP):
+  #   Wells Fargo — Phenom; public API is OAuth-gated + careers site 403s.
+  #   Goldman Sachs — custom platform (higher.gs.com), not Workday.
+  #   Netflix / Uber — Eightfold tenants that bot-block (403).
 
   # ── Big-tech phase-2 (need a real browser / unstable — disabled) ──
   # Verified 2026-06-23 (incl. a live Playwright session): these can't be done
