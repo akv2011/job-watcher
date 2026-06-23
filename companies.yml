@@ -187,6 +187,18 @@ companies:
   - { name: Salesforce, provider: workday, host: salesforce.wd12.myworkdayjobs.com, tenant: salesforce, site: External_Career_Site, searchText: "AI" }
   - { name: Nvidia, provider: workday, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite, searchText: "AI" }
 
+  # ── Financial / banking (Workday, verified 2026-06-23) ──
+  - { name: Citi, provider: workday, host: citi.wd5.myworkdayjobs.com, tenant: citi, site: "2", searchText: "engineer" }
+  - { name: Morgan Stanley, provider: workday, host: ms.wd5.myworkdayjobs.com, tenant: ms, site: External, searchText: "engineer" }
+  - { name: PayPal, provider: workday, host: paypal.wd1.myworkdayjobs.com, tenant: paypal, site: jobs, searchText: "engineer" }
+  - { name: Mastercard, provider: workday, host: mastercard.wd1.myworkdayjobs.com, tenant: mastercard, site: CorporateCareers, searchText: "engineer" }
+  - { name: BlackRock, provider: workday, host: blackrock.wd1.myworkdayjobs.com, tenant: blackrock, site: BlackRock_Professional, searchText: "engineer" }
+  - { name: Deutsche Bank, provider: workday, host: db.wd3.myworkdayjobs.com, tenant: db, site: DBWebsite, searchText: "engineer" }
+  - { name: American Express, provider: oracle, host: egug.fa.us2.oraclecloud.com, site: CX_1, jobUrlBase: "https://careers.americanexpress.com/en/sites/CX_1/job" }
+  # Wells Fargo: careers site is bot-protected (403) + non-Workday (Phenom) — no
+  # clean public endpoint found. Goldman/Capital One/PNC/Truist/Fidelity are on
+  # Workday but under site paths not yet resolved (return 422). Re-probe later.
+
   # ── Big-tech phase-2 (need a real browser / unstable — disabled) ──
   # Verified 2026-06-23 (incl. a live Playwright session): these can't be done
   # cleanly over plain HTTP.

@@ -80,7 +80,8 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 | Provider | Status |
 |----------|--------|
 | greenhouse, ashby, lever | ✅ stable public JSON |
-| workday (Salesforce, Nvidia) | ✅ public CXS API |
+| workday (Salesforce, Nvidia, Citi, Morgan Stanley, PayPal, Mastercard, BlackRock, Deutsche Bank) | ✅ public CXS API |
+| oracle (American Express) | ✅ Oracle Recruiting Cloud REST |
 | amazon | ✅ public `search.json` |
 | microsoft | ✅ Eightfold `pcsx` JSON API (`apply.careers.microsoft.com`) |
 | apple, google, meta, eightfold (Netflix/Uber) | 🚧 phase-2, **disabled** — need a headless browser or unstable. See `companies.yml` notes. |
