@@ -206,9 +206,9 @@ companies:
   - { name: PNC, provider: workday, host: pnc.wd5.myworkdayjobs.com, tenant: pnc, site: External, searchText: "engineer" }
   - { name: Truist, provider: workday, host: truist.wd1.myworkdayjobs.com, tenant: truist, site: Careers, searchText: "engineer" }
   - { name: Fidelity, provider: workday, host: fmr.wd1.myworkdayjobs.com, tenant: fmr, site: FidelityCareers, searchText: "engineer" }
+  - { name: Goldman Sachs, provider: goldman, query: "engineer" }   # higher.gs.com GraphQL gateway
   # Still out (need a browser or auth, not plain HTTP):
   #   Wells Fargo — Phenom; public API is OAuth-gated + careers site 403s.
-  #   Goldman Sachs — custom platform (higher.gs.com), not Workday.
   #   Netflix / Uber — Eightfold tenants that bot-block (403).
 
   # ── Big-tech phase-2 (need a real browser / unstable — disabled) ──

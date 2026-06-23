@@ -83,6 +83,7 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 | workday (Salesforce, Nvidia, Intel, Adobe, Micron, Broadcom, Citi, Morgan Stanley, PayPal, Mastercard, BlackRock, Deutsche Bank, Capital One, PNC, Truist, Fidelity) | ✅ public CXS API |
 | oracle (American Express) | ✅ Oracle Recruiting Cloud REST |
 | careershome (AMD) | ✅ Radancy/iCIMS careers-home `/api/jobs` |
+| goldman (Goldman Sachs) | ✅ higher.gs.com GraphQL gateway |
 | amazon | ✅ public `search.json` |
 | eightfold (Microsoft, Qualcomm) | ✅ Eightfold `pcsx` JSON API |
 | apple, google, meta, eightfold (Netflix/Uber) | 🚧 phase-2, **disabled** — bot-blocked / need a headless browser. See `companies.yml` notes. |
