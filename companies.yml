@@ -29,11 +29,24 @@ filter:
     - "Speech"
     - "Backend"
     - "Back-End"
+    - "Back End"
     - "Full Stack"
     - "Full-Stack"
     - "Fullstack"
+    - "Frontend"
+    - "Front-End"
+    - "Front End"
     - "Software Engineer"
     - "Software Developer"
+    - "Software Development"
+    - "SWE"
+    - "SDE"
+    - "Developer"
+    - "Web Developer"
+    - "Distributed Systems"
+    - "Infrastructure Engineer"
+    - "Systems Engineer"
+    - "API Engineer"
     - "Platform Engineer"
     - "Solutions Architect"
     - "Solutions Engineer"
@@ -168,19 +181,26 @@ companies:
   - { name: Palantir, provider: lever, slug: palantir }
   - { name: Amplemarket, provider: greenhouse, slug: amplemarket }
 
-  # ── Big-tech (verified working public APIs) ──
+  # ── Big-tech (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
+  - { name: Microsoft, provider: microsoft, query: "AI" }            # Eightfold pcsx JSON API
   - { name: Salesforce, provider: workday, host: salesforce.wd12.myworkdayjobs.com, tenant: salesforce, site: External_Career_Site, searchText: "AI" }
   - { name: Nvidia, provider: workday, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite, searchText: "AI" }
 
-  # ── Big-tech phase-2 (no clean unauthenticated JSON yet — disabled) ──
-  # Verified 2026-06-23: these endpoints are bot-protected, CSRF-gated, or
-  # retired. They fail-soft if enabled. Re-enable once a working retrieval
-  # method is plugged into the matching provider, then test with:
+  # ── Big-tech phase-2 (need a real browser / unstable — disabled) ──
+  # Verified 2026-06-23 (incl. a live Playwright session): these can't be done
+  # cleanly over plain HTTP.
+  #   Apple   — results load client-side via a CSRF-shaped POST; the static
+  #             HTML only carries a generic default list, not the query results.
+  #   Google  — heavyweight internal RPC SPA (batchexecute); too brittle to scrape.
+  #   Meta    — rotating GraphQL token, no anonymous endpoint.
+  #   Netflix/Uber — Eightfold endpoints unconfirmed.
+  # Covering these reliably means a headless browser (Playwright in CI) — a heavy
+  # dependency for an hourly job, deferred until the value justifies it.
+  # apple.mjs / google.mjs scaffolds remain; re-test with:
   #   node src/index.mjs --dry-run --company <name>
-  - { name: Microsoft, provider: microsoft, query: "Artificial Intelligence", enabled: false } # gcsservices host blocks non-browser clients
-  - { name: Apple, provider: apple, query: "Machine Learning", enabled: false }                # /api/role/search needs a CSRF session
-  - { name: Google, provider: google, query: "AI", enabled: false }                            # careers v3 API retired; no clean public JSON
+  - { name: Apple, provider: apple, query: "machine learning", enabled: false }
+  - { name: Google, provider: google, query: "AI", enabled: false }
   - { name: Netflix, provider: eightfold, host: explore.jobs.netflix.net, domain: netflix.com, enabled: false }
   - { name: Uber, provider: eightfold, host: www.uber.com, domain: uber.com, enabled: false }
   - { name: Meta, provider: meta, enabled: false }

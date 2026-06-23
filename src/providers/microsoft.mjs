@@ -1,32 +1,34 @@
-// Microsoft careers public search API.
-//   https://gcsservices.careers.microsoft.com/search/api/v1/search
+// Microsoft careers — backed by Eightfold's "pcsx" search API.
+// The public careers SPA (apply.careers.microsoft.com) calls this; it works
+// over plain HTTP with no auth. (The old gcsservices.careers.microsoft.com
+// host blocks non-browser clients — this one does not.)
+//   https://apply.careers.microsoft.com/api/pcsx/search?domain=microsoft.com&query=...&sort_by=timestamp
 // Config: provider: microsoft, query: "AI" (optional)
 import { getJSON, job } from './_http.mjs';
 
 export default async function fetchMicrosoft(entry) {
-  const query = entry.query || 'Artificial Intelligence';
+  const query = entry.query || 'AI';
   const url =
-    'https://gcsservices.careers.microsoft.com/search/api/v1/search?' +
+    'https://apply.careers.microsoft.com/api/pcsx/search?' +
     new URLSearchParams({
-      q: query,
-      l: 'en_us',
-      pg: '1',
-      pgSz: '50',
-      o: 'Recent',
-      flt: 'true',
+      domain: 'microsoft.com',
+      query,
+      location: '',
+      start: '0',
+      num: '50',
+      sort_by: 'timestamp',
     }).toString();
   const data = await getJSON(url);
-  const jobs = data?.operationResult?.result?.jobs;
-  const list = Array.isArray(jobs) ? jobs : [];
-  return list.map((j) => {
-    const locs = j.properties?.locations;
-    const location = Array.isArray(locs) ? locs.join('; ') : j.properties?.primaryLocation;
-    return job({
-      title: j.title,
-      url: `https://jobs.careers.microsoft.com/global/en/job/${j.jobId}`,
-      location,
+  const positions = data?.data?.positions;
+  const list = Array.isArray(positions) ? positions : [];
+  return list.map((p) =>
+    job({
+      title: p.name,
+      // positionUrl is absolute when present; otherwise build the canonical link.
+      url: p.positionUrl || `https://jobs.careers.microsoft.com/global/en/job/${p.id}`,
+      location: Array.isArray(p.locations) ? p.locations.join('; ') : '',
       company: entry.name,
-      id: j.jobId,
-    });
-  });
+      id: p.id,
+    })
+  );
 }

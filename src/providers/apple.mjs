@@ -1,33 +1,43 @@
-// Apple jobs public search API.
-//   POST https://jobs.apple.com/api/role/search
-// Config: provider: apple, query: "Machine Learning" (optional)
-// Apple's endpoint can be picky about headers; provider fails soft.
-import { postJSON, job } from './_http.mjs';
+// Apple careers — no public JSON API, but jobs.apple.com server-renders the
+// results into HTML, so a plain GET + parse works (no browser needed).
+// Each role appears as <a href="/en-us/details/{id}/{slug}">.
+// Config: provider: apple, query: "machine learning" (optional, -> ?search=)
+import { getText, job } from './_http.mjs';
 
 export default async function fetchApple(entry) {
-  const query = entry.query || 'Machine Learning';
-  const data = await postJSON(
-    'https://jobs.apple.com/api/role/search',
-    {
-      query,
-      filters: {},
-      page: 1,
-      locale: 'en-us',
-      sort: 'newest',
-    },
-    { headers: { 'x-requested-with': 'XMLHttpRequest' } }
-  );
-  const list = Array.isArray(data?.searchResults) ? data.searchResults : [];
-  return list.map((j) => {
-    const locs = j.locations?.map((l) => l.name).filter(Boolean).join('; ');
-    return job({
-      title: j.postingTitle || j.title,
-      url: j.positionId
-        ? `https://jobs.apple.com/en-us/details/${j.positionId}`
-        : '',
-      location: locs,
-      company: entry.name,
-      id: j.positionId || j.id,
-    });
-  });
+  const query = entry.query || '';
+  const url =
+    'https://jobs.apple.com/en-us/search?' +
+    new URLSearchParams({ sort: 'newest', ...(query ? { search: query } : {}) }).toString();
+  const html = await getText(url);
+
+  // Collect unique detail links: /en-us/details/<id>/<slug>
+  const re = /\/en-us\/details\/([0-9-]+)\/([a-z0-9-]+)/g;
+  const seen = new Set();
+  const out = [];
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const [, id, slug] = m;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    out.push(
+      job({
+        title: humanize(slug),
+        url: `https://jobs.apple.com/en-us/details/${id}/${slug}`,
+        location: '', // location lives in separate DOM nodes; left blank (filter is title-based)
+        company: entry.name,
+        id,
+      })
+    );
+  }
+  return out;
+}
+
+// "rendering-engine-software-engineer" -> "Rendering Engine Software Engineer"
+function humanize(slug) {
+  return slug
+    .split('-')
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
 }

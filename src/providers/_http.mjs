@@ -23,6 +23,22 @@ export async function postJSON(url, body, { headers = {}, timeout = DEFAULT_TIME
   });
 }
 
+// Fetch raw text (for SSR HTML scraping providers).
+export async function getText(url, { headers = {}, timeout = DEFAULT_TIMEOUT_MS } = {}) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), timeout);
+  try {
+    const res = await fetch(url, {
+      headers: { 'user-agent': UA, accept: 'text/html', ...headers },
+      signal: ctrl.signal,
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    return await res.text();
+  } finally {
+    clearTimeout(t);
+  }
+}
+
 async function requestJSON(url, { method, headers, body, timeout }) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeout);

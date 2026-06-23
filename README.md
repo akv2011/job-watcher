@@ -81,7 +81,14 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 |----------|--------|
 | greenhouse, ashby, lever | ✅ stable public JSON |
 | workday (Salesforce, Nvidia) | ✅ public CXS API |
-| amazon, microsoft, google, apple | ✅ public search APIs (fail-soft if a schema shifts) |
-| eightfold (Netflix, Uber), meta | 🚧 phase-2, disabled by default — verify with `--dry-run` before enabling |
+| amazon | ✅ public `search.json` |
+| microsoft | ✅ Eightfold `pcsx` JSON API (`apply.careers.microsoft.com`) |
+| apple, google, meta, eightfold (Netflix/Uber) | 🚧 phase-2, **disabled** — need a headless browser or unstable. See `companies.yml` notes. |
+
+> Big-tech reality (verified 2026-06-23, incl. a live browser session): Amazon,
+> Microsoft, Salesforce, Nvidia work cleanly over plain HTTP. Apple loads results
+> client-side via a CSRF-shaped POST, Google is a heavyweight internal RPC SPA,
+> and Meta needs a rotating GraphQL token — covering those reliably requires
+> Playwright in CI, deferred until it's worth the dependency.
 
 Every provider fails soft: if one endpoint breaks, the run logs it and continues.
