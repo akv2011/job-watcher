@@ -1,0 +1,62 @@
+name: job-watcher
+
+on:
+  schedule:
+    - cron: '0 * * * *'      # hourly, on the hour (UTC)
+  workflow_dispatch:          # manual "Run workflow" button
+    inputs:
+      mode:
+        description: "Run mode"
+        required: false
+        default: "scan"
+        type: choice
+        options: [scan, dry-run, seed, test-alert]
+
+permissions:
+  contents: write             # lets the built-in GITHUB_TOKEN commit seen.json back
+
+concurrency:
+  group: job-watcher
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Run watcher
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'scan' }}"
+          case "$MODE" in
+            dry-run)    node src/index.mjs --dry-run ;;
+            seed)       node src/index.mjs --seed ;;
+            test-alert) node src/index.mjs --test-alert ;;
+            *)          node src/index.mjs ;;
+          esac
+
+      - name: Commit updated state
+        if: ${{ github.event.inputs.mode != 'dry-run' && github.event.inputs.mode != 'test-alert' }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- state/seen.json; then
+            git add state/seen.json
+            git commit -m "chore: update seen.json [skip ci]"
+            git push
+          else
+            echo "seen.json unchanged — nothing to commit."
+          fi

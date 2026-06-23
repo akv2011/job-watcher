@@ -1,0 +1,20 @@
+{
+  "name": "job-watcher",
+  "version": "1.0.0",
+  "description": "Free, cloud-hosted job-drop alerter. Watches company ATS feeds + big-tech career APIs and emails/Telegrams you the instant a matching role is posted.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "scan": "node src/index.mjs",
+    "dry-run": "node src/index.mjs --dry-run",
+    "seed": "node src/index.mjs --seed",
+    "test-alert": "node src/index.mjs --test-alert"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "nodemailer": "^6.9.14"
+  }
+}

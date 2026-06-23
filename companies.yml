@@ -1,0 +1,186 @@
+# job-watcher config — the ONE file you edit to scale coverage.
+#
+# To add a company:  add a line under `companies:` with its provider + slug.
+#   provider: greenhouse | ashby | lever | workday | amazon | apple |
+#             microsoft | google | eightfold | meta
+#   - greenhouse/ashby/lever: just need `slug` (the part after the board URL).
+#   - workday: need host, tenant, site (see examples).
+#   - amazon/apple/microsoft/google: optional `query:` to bias the search.
+#   - eightfold: need host + domain (phase-2, verify with --dry-run first).
+# Set `enabled: false` to mute a company without deleting it.
+
+# ── Title filter (mirrors career-ops) ────────────────────────────────
+# Keep a role if >=1 positive matches AND 0 negatives match (case-insensitive).
+filter:
+  positive:
+    - "AI"
+    - "ML"
+    - "LLM"
+    - "Agent"
+    - "Agentic"
+    - "GenAI"
+    - "Generative"
+    - "NLP"
+    - "LLMOps"
+    - "MLOps"
+    - "Machine Learning"
+    - "Voice AI"
+    - "Conversational"
+    - "Speech"
+    - "Backend"
+    - "Back-End"
+    - "Full Stack"
+    - "Full-Stack"
+    - "Fullstack"
+    - "Software Engineer"
+    - "Software Developer"
+    - "Platform Engineer"
+    - "Solutions Architect"
+    - "Solutions Engineer"
+    - "Forward Deployed"
+    - "Deployed Engineer"
+    - "Customer Engineer"
+    - "Integration Engineer"
+    - "Founding Engineer"
+    - "Applied AI"
+    - "Developer Advocate"
+    - "DevRel"
+    - "Automation"
+  negative:
+    - ".NET"
+    - "iOS"
+    - "Android"
+    - "PHP"
+    - "Embedded"
+    - "Firmware"
+    - "FPGA"
+    - "ASIC"
+    - "Mainframe"
+    - "COBOL"
+    - "Salesforce Admin"
+  # Location filter is OFF by default (open to remote + India + global).
+  # Uncomment + customize to restrict:
+  # location:
+  #   always_allow: ["India", "Remote"]
+  #   allow: ["Remote", "India", "Bengaluru", "United States"]
+  #   block: []
+
+companies:
+  # ── AI labs / LLM providers ──
+  - { name: Anthropic, provider: greenhouse, slug: anthropic }
+  - { name: Cohere, provider: ashby, slug: cohere }
+  - { name: Mistral AI, provider: lever, slug: mistral }
+
+  # ── Agentic / MCP / agent-infra (career-ops verified) ──
+  - { name: Harvey, provider: ashby, slug: harvey }
+  - { name: Baseten, provider: ashby, slug: baseten }
+  - { name: LlamaIndex, provider: ashby, slug: llamaindex }
+  - { name: Weaviate, provider: ashby, slug: weaviate }
+  - { name: Cursor (Anysphere), provider: ashby, slug: cursor }
+  - { name: Composio, provider: ashby, slug: composio }
+  - { name: Arcade AI, provider: ashby, slug: arcade-ai }
+  - { name: Letta, provider: ashby, slug: letta }
+  - { name: Mem0, provider: ashby, slug: mem0 }
+  - { name: Browserbase, provider: ashby, slug: browserbase }
+  - { name: E2B, provider: ashby, slug: e2b }
+  - { name: Modal, provider: ashby, slug: modal }
+  - { name: Fireworks AI, provider: ashby, slug: fireworksai }
+  - { name: Relevance AI, provider: ashby, slug: relevanceai }
+  - { name: Factory, provider: ashby, slug: factory }
+  - { name: Cognition, provider: ashby, slug: cognition }
+  - { name: Gumloop, provider: ashby, slug: gumloop }
+  - { name: Dosu, provider: ashby, slug: dosu }
+  - { name: LangChain, provider: ashby, slug: langchain }
+  - { name: Pinecone, provider: ashby, slug: pinecone }
+
+  # ── Known visa sponsors / infra (Greenhouse) ──
+  - { name: Scale AI, provider: greenhouse, slug: scaleai }
+  - { name: Together AI, provider: greenhouse, slug: togetherai }
+  - { name: Elastic, provider: greenhouse, slug: elastic }
+  - { name: Emergent Labs, provider: greenhouse, slug: emergentlabsinc }
+
+  # ── India-friendly / India-HQ employers ──
+  - { name: Sarvam AI, provider: ashby, slug: sarvam }
+  - { name: Postman, provider: greenhouse, slug: postman }
+  - { name: Observe.AI, provider: greenhouse, slug: observeai }
+  - { name: Turing, provider: greenhouse, slug: turing }
+  - { name: PhonePe, provider: greenhouse, slug: phonepe }
+  - { name: Groww, provider: greenhouse, slug: groww }
+  - { name: Zeta, provider: lever, slug: zeta }
+
+  # ── Voice AI & Conversational AI ──
+  - { name: PolyAI, provider: greenhouse, slug: polyai }
+  - { name: Parloa, provider: greenhouse, slug: parloa }
+  - { name: Intercom, provider: greenhouse, slug: intercom }
+  - { name: Hume AI, provider: greenhouse, slug: humeai }
+  - { name: ElevenLabs, provider: ashby, slug: elevenlabs }
+  - { name: Deepgram, provider: ashby, slug: deepgram }
+  - { name: Vapi, provider: ashby, slug: vapi }
+  - { name: Bland AI, provider: ashby, slug: bland }
+  - { name: Sierra, provider: ashby, slug: sierra }
+  - { name: Decagon, provider: ashby, slug: decagon }
+  - { name: Lindy, provider: ashby, slug: lindy }
+  - { name: Speechmatics, provider: greenhouse, slug: speechmatics }
+
+  # ── AI-native platforms / dev-tools ──
+  - { name: Airtable, provider: greenhouse, slug: airtable }
+  - { name: Vercel, provider: greenhouse, slug: vercel }
+  - { name: Temporal, provider: greenhouse, slug: temporaltechnologies }
+  - { name: Arize AI, provider: greenhouse, slug: arizeai }
+  - { name: RunPod, provider: greenhouse, slug: runpod }
+  - { name: CoreWeave (W&B), provider: greenhouse, slug: coreweave }
+  - { name: Glean, provider: greenhouse, slug: gleanwork }
+  - { name: Runway, provider: ashby, slug: runway }
+  - { name: Hightouch, provider: greenhouse, slug: hightouch }
+  - { name: PlanetScale, provider: greenhouse, slug: planetscale }
+  - { name: Perplexity, provider: ashby, slug: perplexity }
+  - { name: Clay Labs, provider: ashby, slug: claylabs }
+  - { name: WorkOS, provider: ashby, slug: workos }
+  - { name: Supabase, provider: ashby, slug: supabase }
+  - { name: Resend, provider: ashby, slug: resend }
+  - { name: Clerk, provider: ashby, slug: clerk }
+  - { name: Inngest, provider: ashby, slug: inngest }
+  - { name: n8n, provider: ashby, slug: n8n }
+  - { name: Zapier, provider: ashby, slug: zapier }
+  - { name: Boomi, provider: greenhouse, slug: boomilp }
+
+  # ── EU / DACH / UK AI ecosystem ──
+  - { name: Aleph Alpha, provider: ashby, slug: AlephAlpha }
+  - { name: DeepL, provider: ashby, slug: DeepL }
+  - { name: Black Forest Labs, provider: greenhouse, slug: blackforestlabs }
+  - { name: Helsing, provider: greenhouse, slug: helsing }
+  - { name: Celonis, provider: greenhouse, slug: celonis }
+  - { name: Contentful, provider: greenhouse, slug: contentful }
+  - { name: Wayve, provider: greenhouse, slug: wayve }
+  - { name: Isomorphic Labs, provider: greenhouse, slug: isomorphiclabs }
+  - { name: PhysicsX, provider: greenhouse, slug: physicsx }
+  - { name: Stability AI, provider: greenhouse, slug: stabilityai }
+  - { name: Synthesia, provider: ashby, slug: synthesia }
+  - { name: Faculty, provider: ashby, slug: faculty }
+  - { name: Causaly, provider: ashby, slug: causaly }
+  - { name: Lovable, provider: ashby, slug: lovable }
+  - { name: Legora, provider: ashby, slug: legora }
+  - { name: Lakera, provider: ashby, slug: lakera.ai }
+  - { name: Photoroom, provider: ashby, slug: photoroom }
+  - { name: Spotify, provider: lever, slug: spotify }
+  - { name: Qonto, provider: lever, slug: qonto }
+  - { name: Pigment, provider: lever, slug: pigment }
+  - { name: Palantir, provider: lever, slug: palantir }
+  - { name: Amplemarket, provider: greenhouse, slug: amplemarket }
+
+  # ── Big-tech (verified working public APIs) ──
+  - { name: Amazon, provider: amazon, query: "machine learning" }
+  - { name: Salesforce, provider: workday, host: salesforce.wd12.myworkdayjobs.com, tenant: salesforce, site: External_Career_Site, searchText: "AI" }
+  - { name: Nvidia, provider: workday, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite, searchText: "AI" }
+
+  # ── Big-tech phase-2 (no clean unauthenticated JSON yet — disabled) ──
+  # Verified 2026-06-23: these endpoints are bot-protected, CSRF-gated, or
+  # retired. They fail-soft if enabled. Re-enable once a working retrieval
+  # method is plugged into the matching provider, then test with:
+  #   node src/index.mjs --dry-run --company <name>
+  - { name: Microsoft, provider: microsoft, query: "Artificial Intelligence", enabled: false } # gcsservices host blocks non-browser clients
+  - { name: Apple, provider: apple, query: "Machine Learning", enabled: false }                # /api/role/search needs a CSRF session
+  - { name: Google, provider: google, query: "AI", enabled: false }                            # careers v3 API retired; no clean public JSON
+  - { name: Netflix, provider: eightfold, host: explore.jobs.netflix.net, domain: netflix.com, enabled: false }
+  - { name: Uber, provider: eightfold, host: www.uber.com, domain: uber.com, enabled: false }
+  - { name: Meta, provider: meta, enabled: false }
