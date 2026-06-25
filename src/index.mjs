@@ -29,6 +29,7 @@ import smartrecruiters from './providers/smartrecruiters.mjs';
 import workable from './providers/workable.mjs';
 import recruitee from './providers/recruitee.mjs';
 import bamboohr from './providers/bamboohr.mjs';
+import hrmos from './providers/hrmos.mjs';
 import oracle from './providers/oracle.mjs';
 import careershome from './providers/careershome.mjs';
 import goldman from './providers/goldman.mjs';
@@ -41,7 +42,7 @@ import playwright, { closeBrowser } from './providers/playwright.mjs';
 
 const PROVIDERS = {
   greenhouse, ashby, lever, workday, oracle, careershome, goldman,
-  smartrecruiters, workable, recruitee, bamboohr,
+  smartrecruiters, workable, recruitee, bamboohr, hrmos,
   amazon, apple, google, eightfold, meta, playwright,
 };
 
