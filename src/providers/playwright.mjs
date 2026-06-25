@@ -129,6 +129,29 @@ const SITES = {
       return out;
     },
   },
+  yc: {
+    // Live YC firehose: ycombinator.com/jobs renders ~40 recent roles ACROSS all
+    // YC companies (auto-includes brand-new ones). Multi-company: each job carries
+    // its own company. Work at a Startup is login-gated; this public page isn't.
+    url: 'https://www.ycombinator.com/jobs/role/software-engineer',
+    waitSelector: 'a[href*="/jobs/"]',
+    extract: () => {
+      const pretty = (s) => s.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      const seen = new Set(), out = [];
+      document.querySelectorAll('a[href*="/jobs/"]').forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        const m = href.match(/\/companies\/([^/]+)\/jobs\/([A-Za-z0-9_]+)/);
+        if (!m) return;
+        const cslug = m[1], jid = m[2];
+        if (seen.has(jid)) return;
+        seen.add(jid);
+        const t = (a.textContent || '').trim();
+        if (!t) return;
+        out.push({ id: jid, title: t, company: pretty(cslug), url: 'https://www.ycombinator.com' + href.split('?')[0], location: '' });
+      });
+      return out;
+    },
+  },
   netflix: {
     // Eightfold: bot-blocks plain HTTP, but the in-page fetch (after the page
     // establishes a session) returns clean JSON.
@@ -183,7 +206,8 @@ export default async function fetchPlaywright(entry) {
     const rows = await page.evaluate(site.extract);
     return (rows || [])
       .filter((r) => r && r.title && r.url)
-      .map((r) => job({ title: r.title, url: r.url, location: r.location, company: entry.name, id: r.id }));
+      // multi-company sources (e.g. YC) set r.company per job; others use entry.name
+      .map((r) => job({ title: r.title, url: r.url, location: r.location, company: r.company || entry.name, id: r.id }));
   } finally {
     await page.close();
   }

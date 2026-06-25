@@ -87,7 +87,8 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 | goldman (Goldman Sachs) | ✅ higher.gs.com GraphQL gateway |
 | amazon | ✅ public `search.json` |
 | eightfold (Microsoft, Qualcomm) | ✅ Eightfold `pcsx` JSON API |
-| playwright (Apple, Google, Meta, Uber, Netflix, Wells Fargo) | ✅ headless browser (best-effort; bot-blocked / JS-only sites) |
+| playwright (Apple, Google, Meta, Uber, Netflix, Wells Fargo, Cisco) | ✅ headless browser (best-effort; bot-blocked / JS-only sites) |
+| playwright **YC firehose** | ✅ ycombinator.com/jobs — recent eng roles across ALL YC companies, auto-includes new ones |
 
 > Big-tech reality (verified 2026-06-23, incl. a live browser session): Amazon,
 > Microsoft, Salesforce, Nvidia work cleanly over plain HTTP. Apple loads results

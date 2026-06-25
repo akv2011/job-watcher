@@ -290,3 +290,5 @@ companies:
   - { name: Netflix, provider: playwright, site: netflix }
   - { name: Wells Fargo, provider: playwright, site: wellsfargo }
   - { name: Cisco, provider: playwright, site: cisco }
+  # Live YC firehose — recent eng roles across ALL YC companies (auto-includes new ones)
+  - { name: YC, provider: playwright, site: yc }
