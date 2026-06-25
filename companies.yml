@@ -132,7 +132,7 @@ companies:
   - { name: Bland AI, provider: ashby, slug: bland }
   - { name: Sierra, provider: ashby, slug: sierra }
   - { name: Decagon, provider: ashby, slug: decagon }
-  - { name: Lindy, provider: ashby, slug: lindy }
+  - { name: Lindy, provider: ashby, slug: lindy, enabled: false }   # Ashby board 404s — moved platforms; re-add when located
   - { name: Speechmatics, provider: greenhouse, slug: speechmatics }
 
   # ── AI-native platforms / dev-tools ──
