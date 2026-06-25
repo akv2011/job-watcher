@@ -76,12 +76,46 @@ filter:
     - "Mainframe"
     - "COBOL"
     - "Salesforce Admin"
-  # Location filter is OFF by default (open to remote + India + global).
-  # Uncomment + customize to restrict:
-  # location:
-  #   always_allow: ["India", "Remote"]
-  #   allow: ["Remote", "India", "Bengaluru", "United States"]
-  #   block: []
+    # -- Seniority: out of scope for an early-career search --
+    - "Senior"
+    - "Sr."
+    - "Staff "          # trailing space → "Staff Engineer" but not "Member of Technical Staff"
+    - "Principal"
+    - "Lead "           # "Lead Engineer" but not "Leadership"/"Team Lead"
+    - "Director"
+    - "Head of"
+    - "Vice President"
+    - "Distinguished"
+  # Location: drop US ON-SITE roles (can't relocate without remote). Keep remote
+  # (anywhere), India, and non-US on-site (Japan/EU — those sponsor relocation).
+  # always_allow (Remote) wins over block; empty location always passes.
+  location:
+    always_allow:
+      - "Remote"
+      - "Anywhere"
+    block:
+      - "United States"
+      - "United States of America"
+      - "USA"
+      - "San Francisco"
+      - "New York"
+      - "Costa Mesa"
+      - "Seattle"
+      - "Austin"
+      - "Boston"
+      - "Los Angeles"
+      - "Mountain View"
+      - "Palo Alto"
+      - "Sunnyvale"
+      - "Santa Ana"
+      - "Atlanta"
+      - "Denver"
+      - "Dallas"
+      - "Chicago"
+      - "San Jose"
+      - "Cupertino"
+      - "Bellevue"
+      - "Redmond"
 
 companies:
   # ── AI labs / LLM providers ──
