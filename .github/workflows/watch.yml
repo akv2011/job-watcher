@@ -62,10 +62,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- state/seen.json; then
-            git add state/seen.json
-            git commit -m "chore: update seen.json [skip ci]"
+          if ! git diff --quiet -- state/; then
+            git add state/
+            git commit -m "chore: update state [skip ci]"
             git push
           else
-            echo "seen.json unchanged — nothing to commit."
+            echo "state unchanged — nothing to commit."
           fi
