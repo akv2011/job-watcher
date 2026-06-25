@@ -19,12 +19,20 @@ export default async function fetchWorkday(entry) {
   // Pull the most recent page or two — cron runs hourly, so we only need the
   // newest postings, not the entire (often thousands-deep) board.
   for (let offset = 0; offset < 40; offset += 20) {
-    const data = await postJSON(`https://${host}/wday/cxs/${tenant}/${site}/jobs`, {
-      appliedFacets: {},
-      limit: 20,
-      offset,
-      searchText,
-    });
+    let data;
+    try {
+      data = await postJSON(`https://${host}/wday/cxs/${tenant}/${site}/jobs`, {
+        appliedFacets: {},
+        limit: 20,
+        offset,
+        searchText,
+      });
+    } catch (err) {
+      // Flaky Workday boards (e.g. Truist) intermittently 500. If we already
+      // have page-1 results, return them rather than failing the whole company.
+      if (out.length > 0) break;
+      throw err;
+    }
     const postings = Array.isArray(data?.jobPostings) ? data.jobPostings : [];
     for (const p of postings) {
       out.push(
