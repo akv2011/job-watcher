@@ -59,6 +59,11 @@ filter:
     - "Developer Advocate"
     - "DevRel"
     - "Automation"
+    # -- Japanese engineering keywords (for HRMOS/JP companies posting in Japanese) --
+    - "エンジニア"          # engineer (covers backend/frontend/infra/ML engineer)
+    - "ソフトウェア"        # software
+    - "機械学習"            # machine learning
+    - "開発エンジニア"      # development engineer
   negative:
     - ".NET"
     - "iOS"
@@ -247,6 +252,41 @@ companies:
   - { name: Weave, provider: greenhouse, slug: weave }
   # BambooHR provider is registered & ready (https://{slug}.bamboohr.com/careers/list);
   # no target company on it yet — add one-liner when a wanted company uses BambooHR.
+
+  # ── Japan (English-friendly / visa-sponsoring; verified 2026-06-25) ──
+  # Most use HRMOS (Japan's dominant ATS, server-rendered). Many roles are
+  # Japanese-titled — the filter carries JP engineering keywords above.
+  - { name: Money Forward, provider: hrmos, slug: moneyforward }
+  - { name: Givery, provider: hrmos, slug: givery }
+  - { name: Chatwork, provider: hrmos, slug: chatwork }
+  - { name: ANDPAD, provider: hrmos, slug: andpad }
+  - { name: Studist, provider: hrmos, slug: studist }
+  - { name: estie, provider: hrmos, slug: estie }
+  - { name: Uzabase, provider: hrmos, slug: uzabase }
+  - { name: kaonavi, provider: hrmos, slug: kaonavi }
+  - { name: ABEJA, provider: hrmos, slug: abeja }
+  - { name: Gunosy, provider: hrmos, slug: gunosy }
+  - { name: GLOBIS, provider: hrmos, slug: globis }
+  - { name: Timee, provider: hrmos, slug: timee }
+  - { name: SpiderPlus, provider: hrmos, slug: spiderplus }
+  - { name: Macromill, provider: hrmos, slug: macromill }
+  - { name: asoview, provider: hrmos, slug: asoview }
+  - { name: dinii, provider: hrmos, slug: dinii }
+  - { name: FastDoctor, provider: hrmos, slug: fastdoctor }
+  - { name: MICIN, provider: hrmos, slug: micin }
+  - { name: Henry, provider: hrmos, slug: henry }
+  - { name: GREE, provider: hrmos, slug: gree }
+  - { name: Raksul, provider: hrmos, slug: raksul }
+  - { name: PKSHA Technology, provider: hrmos, slug: pkshatech }
+  - { name: smartround, provider: hrmos, slug: smartround }
+  - { name: MNTSQ, provider: hrmos, slug: mntsq }
+  - { name: PayPay, provider: greenhouse, slug: paypay }
+  - { name: SmartNews, provider: workable, slug: smartnews }
+  - { name: Josys, provider: ashby, slug: josys }
+  - { name: BASE, provider: ashby, slug: base }
+  - { name: M3, provider: greenhouse, slug: m3 }
+  - { name: NewsPicks, provider: smartrecruiters, slug: newspicks }
+  - { name: Moneytree, provider: lever, slug: moneytree }
 
   # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
