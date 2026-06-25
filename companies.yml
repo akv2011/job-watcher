@@ -330,6 +330,21 @@ companies:
   - { name: Kanmu, provider: herp, slug: kanmu }
   - { name: Woven by Toyota, provider: lever, slug: woven-by-toyota }
 
+  # ── Enterprise data / infra / security (verified 2026-06-26) ──
+  - { name: Cohesity, provider: workday, host: cohesity.wd5.myworkdayjobs.com, tenant: cohesity, site: Cohesity_Careers, searchText: "engineer" }
+  - { name: Rubrik, provider: greenhouse, slug: rubrik }
+  - { name: Pure Storage, provider: greenhouse, slug: purestorage }
+  - { name: Druva, provider: greenhouse, slug: druva }
+  - { name: Commvault, provider: greenhouse, slug: commvault }
+  - { name: Confluent, provider: ashby, slug: confluent }
+  - { name: Cockroach Labs, provider: greenhouse, slug: cockroachlabs }
+  - { name: Redis, provider: ashby, slug: redis }
+  - { name: Grafana Labs, provider: greenhouse, slug: grafanalabs }
+  - { name: Zscaler, provider: greenhouse, slug: zscaler }
+  - { name: New Relic, provider: greenhouse, slug: newrelic }
+  - { name: ClickHouse, provider: ashby, slug: clickhouse }
+  - { name: Yugabyte, provider: greenhouse, slug: yugabyte }
+
   # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
   - { name: Microsoft, provider: eightfold, host: apply.careers.microsoft.com, domain: microsoft.com, query: "AI" }
