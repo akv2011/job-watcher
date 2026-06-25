@@ -80,6 +80,7 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 | Provider | Status |
 |----------|--------|
 | greenhouse, ashby, lever | ✅ stable public JSON |
+| smartrecruiters, workable, recruitee, bamboohr | ✅ public JSON (Visa, Bosch, Mercari, bunq…) |
 | workday (Salesforce, Nvidia, Intel, Adobe, Micron, Broadcom, Citi, Morgan Stanley, PayPal, Mastercard, BlackRock, Deutsche Bank, Capital One, PNC, Truist, Fidelity) | ✅ public CXS API |
 | oracle (American Express) | ✅ Oracle Recruiting Cloud REST |
 | careershome (AMD) | ✅ Radancy/iCIMS careers-home `/api/jobs` |
