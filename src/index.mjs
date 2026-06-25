@@ -33,10 +33,11 @@ import apple from './providers/apple.mjs';
 import google from './providers/google.mjs';
 import eightfold from './providers/eightfold.mjs';
 import meta from './providers/meta.mjs';
+import playwright, { closeBrowser } from './providers/playwright.mjs';
 
 const PROVIDERS = {
   greenhouse, ashby, lever, workday, oracle, careershome, goldman,
-  amazon, apple, google, eightfold, meta,
+  amazon, apple, google, eightfold, meta, playwright,
 };
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -213,7 +214,9 @@ function reportErrors(errors) {
   }
 }
 
-main().catch((e) => {
-  console.error('Fatal:', e);
-  process.exit(1);
-});
+main()
+  .catch((e) => {
+    console.error('Fatal:', e);
+    process.exitCode = 1;
+  })
+  .finally(() => closeBrowser()); // release the headless browser so the process exits

@@ -86,7 +86,7 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 | goldman (Goldman Sachs) | ✅ higher.gs.com GraphQL gateway |
 | amazon | ✅ public `search.json` |
 | eightfold (Microsoft, Qualcomm) | ✅ Eightfold `pcsx` JSON API |
-| apple, google, meta, eightfold (Netflix/Uber) | 🚧 phase-2, **disabled** — bot-blocked / need a headless browser. See `companies.yml` notes. |
+| playwright (Apple, Google, Meta, Uber, Netflix, Wells Fargo) | ✅ headless browser (best-effort; bot-blocked / JS-only sites) |
 
 > Big-tech reality (verified 2026-06-23, incl. a live browser session): Amazon,
 > Microsoft, Salesforce, Nvidia work cleanly over plain HTTP. Apple loads results

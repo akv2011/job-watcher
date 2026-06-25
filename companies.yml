@@ -211,20 +211,14 @@ companies:
   #   Wells Fargo — Phenom; public API is OAuth-gated + careers site 403s.
   #   Netflix / Uber — Eightfold tenants that bot-block (403).
 
-  # ── Big-tech phase-2 (need a real browser / unstable — disabled) ──
-  # Verified 2026-06-23 (incl. a live Playwright session): these can't be done
-  # cleanly over plain HTTP.
-  #   Apple   — results load client-side via a CSRF-shaped POST; the static
-  #             HTML only carries a generic default list, not the query results.
-  #   Google  — heavyweight internal RPC SPA (batchexecute); too brittle to scrape.
-  #   Meta    — rotating GraphQL token, no anonymous endpoint.
-  #   Netflix/Uber — Eightfold endpoints unconfirmed.
-  # Covering these reliably means a headless browser (Playwright in CI) — a heavy
-  # dependency for an hourly job, deferred until the value justifies it.
-  # apple.mjs / google.mjs scaffolds remain; re-test with:
-  #   node src/index.mjs --dry-run --company <name>
-  - { name: Apple, provider: apple, query: "machine learning", enabled: false }
-  - { name: Google, provider: google, query: "AI", enabled: false }
-  - { name: Netflix, provider: eightfold, host: explore.jobs.netflix.net, domain: netflix.com, enabled: false }
-  - { name: Uber, provider: eightfold, host: www.uber.com, domain: uber.com, enabled: false }
-  - { name: Meta, provider: meta, enabled: false }
+  # ── Headless-browser (Playwright) — sites with no clean public API ──
+  # These bot-block plain HTTP or render jobs only via JS, so they run through a
+  # real headless browser in CI (provider: playwright, keyed by `site`). They're
+  # best-effort: slower and more fragile than the API companies, and fail-soft if
+  # a site redesigns. Extraction verified live 2026-06-25.
+  - { name: Apple, provider: playwright, site: apple }
+  - { name: Google, provider: playwright, site: google }
+  - { name: Meta, provider: playwright, site: meta }
+  - { name: Uber, provider: playwright, site: uber }
+  - { name: Netflix, provider: playwright, site: netflix }
+  - { name: Wells Fargo, provider: playwright, site: wellsfargo }
