@@ -294,6 +294,7 @@ companies:
   - { name: Hacobu, provider: herp, slug: hacobu }
   - { name: newmo, provider: herp, slug: newmo }
   - { name: Kanmu, provider: herp, slug: kanmu }
+  - { name: Woven by Toyota, provider: lever, slug: woven-by-toyota }
 
   # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
