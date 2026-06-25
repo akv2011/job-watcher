@@ -152,6 +152,24 @@ const SITES = {
       return out;
     },
   },
+  sakana: {
+    // Sakana AI (Tokyo) — custom careers page, JS-rendered links /careers/{slug}/.
+    url: 'https://sakana.ai/careers/',
+    waitSelector: 'a[href*="/careers/"]',
+    extract: () => {
+      const pretty = (s) => s.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      const seen = new Set(), out = [];
+      document.querySelectorAll('a[href^="/careers/"]').forEach((a) => {
+        const m = (a.getAttribute('href') || '').match(/^\/careers\/([a-z0-9-]+)\/?$/);
+        if (!m) return;
+        const slug = m[1];
+        if (seen.has(slug) || slug === 'applied-careers') return;
+        seen.add(slug);
+        out.push({ id: slug, title: pretty(slug), url: 'https://sakana.ai/careers/' + slug + '/', location: 'Tokyo, Japan', company: 'Sakana AI' });
+      });
+      return out;
+    },
+  },
   netflix: {
     // Eightfold: bot-blocks plain HTTP, but the in-page fetch (after the page
     // establishes a session) returns clean JSON.

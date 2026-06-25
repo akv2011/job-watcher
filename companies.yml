@@ -287,6 +287,13 @@ companies:
   - { name: M3, provider: greenhouse, slug: m3 }
   - { name: NewsPicks, provider: smartrecruiters, slug: newspicks }
   - { name: Moneytree, provider: lever, slug: moneytree }
+  # Holdouts resolved (2026-06-25): real ATS found the hard way
+  - { name: Rakuten, provider: workday, host: rakuten.wd1.myworkdayjobs.com, tenant: rakuten, site: RakutenAsia, searchText: "engineer" }
+  - { name: Sakana AI, provider: playwright, site: sakana }
+  - { name: Ubie, provider: herp, slug: ubiehr }
+  - { name: Hacobu, provider: herp, slug: hacobu }
+  - { name: newmo, provider: herp, slug: newmo }
+  - { name: Kanmu, provider: herp, slug: kanmu }
 
   # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
