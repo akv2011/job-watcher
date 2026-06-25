@@ -224,6 +224,30 @@ companies:
   - { name: Sardine, provider: ashby, slug: sardine }
   - { name: Abridge, provider: ashby, slug: abridge }
 
+  # ── New-ATS providers + YC/recent (identity-verified 2026-06-25) ──
+  - { name: Mercari, provider: workable, slug: mercari }            # validates Workable provider
+  - { name: Visa, provider: smartrecruiters, slug: visa }          # confirmed real Visa
+  - { name: Bosch, provider: smartrecruiters, slug: BoschGroup }   # confirmed real Bosch Group
+  - { name: bunq, provider: recruitee, slug: bunq }                # validates Recruitee provider
+  - { name: Luminus, provider: recruitee, slug: luminus }
+  - { name: AfterQuery, provider: ashby, slug: afterquery }
+  - { name: Bild AI, provider: ashby, slug: bild-ai }
+  - { name: Dex, provider: ashby, slug: dex }
+  - { name: DiligenceSquared, provider: ashby, slug: diligencesquared }
+  - { name: Flowtel, provider: ashby, slug: flowtel }
+  - { name: Moss, provider: ashby, slug: moss }
+  - { name: Paragon, provider: ashby, slug: paragon }
+  - { name: Revise Robotics, provider: ashby, slug: reviserobotics }
+  - { name: SF Tensor, provider: ashby, slug: sf-tensor }
+  - { name: Solidroad, provider: ashby, slug: solidroad }
+  - { name: Axiom, provider: greenhouse, slug: axiom }
+  - { name: Icarus, provider: greenhouse, slug: icarus }
+  - { name: Mesh, provider: greenhouse, slug: mesh }
+  - { name: Osmosis, provider: greenhouse, slug: osmosis }
+  - { name: Weave, provider: greenhouse, slug: weave }
+  # BambooHR provider is registered & ready (https://{slug}.bamboohr.com/careers/list);
+  # no target company on it yet — add one-liner when a wanted company uses BambooHR.
+
   # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
   - { name: Microsoft, provider: eightfold, host: apply.careers.microsoft.com, domain: microsoft.com, query: "AI" }
