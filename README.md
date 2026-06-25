@@ -82,13 +82,14 @@ Providers: `greenhouse`, `ashby`, `lever`, `workday`, `amazon`, `apple`,
 | greenhouse, ashby, lever | ✅ stable public JSON |
 | smartrecruiters, workable, recruitee, bamboohr | ✅ public JSON (Visa, Bosch, Mercari, bunq…) |
 | hrmos | ✅ Japan's dominant ATS, SSR-parsed (Money Forward, PKSHA, Timee, GREE…) |
+| herp | ✅ Japanese ATS, SSR-parsed (Ubie, Hacobu, newmo, Kanmu) |
 | workday (Salesforce, Nvidia, Intel, Adobe, Micron, Broadcom, Citi, Morgan Stanley, PayPal, Mastercard, BlackRock, Deutsche Bank, Capital One, PNC, Truist, Fidelity) | ✅ public CXS API |
 | oracle (American Express) | ✅ Oracle Recruiting Cloud REST |
 | careershome (AMD) | ✅ Radancy/iCIMS careers-home `/api/jobs` |
 | goldman (Goldman Sachs) | ✅ higher.gs.com GraphQL gateway |
 | amazon | ✅ public `search.json` |
 | eightfold (Microsoft, Qualcomm) | ✅ Eightfold `pcsx` JSON API |
-| playwright (Apple, Google, Meta, Uber, Netflix, Wells Fargo, Cisco) | ✅ headless browser (best-effort; bot-blocked / JS-only sites) |
+| playwright (Apple, Google, Meta, Uber, Netflix, Wells Fargo, Cisco, Sakana AI) | ✅ headless browser (best-effort; bot-blocked / JS-only sites) |
 | playwright **YC firehose** | ✅ ycombinator.com/jobs — recent eng roles across ALL YC companies, auto-includes new ones |
 
 > Big-tech reality (verified 2026-06-23, incl. a live browser session): Amazon,
