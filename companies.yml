@@ -181,6 +181,49 @@ companies:
   - { name: Palantir, provider: lever, slug: palantir }
   - { name: Amplemarket, provider: greenhouse, slug: amplemarket }
 
+  # ── Hot startups & enterprise SaaS (incl. YC-backed; verified 2026-06-25) ──
+  - { name: OpenAI, provider: ashby, slug: openai }
+  - { name: xAI, provider: greenhouse, slug: xai }
+  - { name: Stripe, provider: greenhouse, slug: stripe }
+  - { name: Databricks, provider: greenhouse, slug: databricks }
+  - { name: Snowflake, provider: ashby, slug: snowflake }
+  - { name: Cloudflare, provider: greenhouse, slug: cloudflare }
+  - { name: Datadog, provider: greenhouse, slug: datadog }
+  - { name: MongoDB, provider: greenhouse, slug: mongodb }
+  - { name: Okta, provider: greenhouse, slug: okta }
+  - { name: Twilio, provider: greenhouse, slug: twilio }
+  - { name: Figma, provider: greenhouse, slug: figma }
+  - { name: Notion, provider: ashby, slug: notion }
+  - { name: Linear, provider: ashby, slug: linear }
+  - { name: Discord, provider: greenhouse, slug: discord }
+  - { name: Reddit, provider: greenhouse, slug: reddit }
+  - { name: Pinterest, provider: greenhouse, slug: pinterest }
+  - { name: Dropbox, provider: greenhouse, slug: dropbox }
+  - { name: GitLab, provider: greenhouse, slug: gitlab }
+  - { name: Instacart, provider: greenhouse, slug: instacart }
+  - { name: Airbnb, provider: greenhouse, slug: airbnb }
+  - { name: Lyft, provider: greenhouse, slug: lyft }
+  - { name: Asana, provider: greenhouse, slug: asana }
+  - { name: Samsara, provider: greenhouse, slug: samsara }
+  - { name: Coinbase, provider: greenhouse, slug: coinbase }
+  - { name: Robinhood, provider: greenhouse, slug: robinhood }
+  - { name: Affirm, provider: greenhouse, slug: affirm }
+  - { name: Brex, provider: greenhouse, slug: brex }
+  - { name: Ramp, provider: ashby, slug: ramp }
+  - { name: Mercury, provider: greenhouse, slug: mercury }
+  - { name: Chime, provider: greenhouse, slug: chime }
+  - { name: Deel, provider: ashby, slug: deel }
+  - { name: Gusto, provider: greenhouse, slug: gusto }
+  - { name: Vanta, provider: ashby, slug: vanta }
+  - { name: Replit, provider: ashby, slug: replit }
+  - { name: Anduril, provider: greenhouse, slug: andurilindustries }
+  - { name: Character.AI, provider: ashby, slug: character }
+  - { name: Suno, provider: ashby, slug: suno }
+  - { name: Writer, provider: ashby, slug: writer }
+  - { name: Cresta, provider: greenhouse, slug: cresta }
+  - { name: Sardine, provider: ashby, slug: sardine }
+  - { name: Abridge, provider: ashby, slug: abridge }
+
   # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
   - { name: Microsoft, provider: eightfold, host: apply.careers.microsoft.com, domain: microsoft.com, query: "AI" }
@@ -222,3 +265,4 @@ companies:
   - { name: Uber, provider: playwright, site: uber }
   - { name: Netflix, provider: playwright, site: netflix }
   - { name: Wells Fargo, provider: playwright, site: wellsfargo }
+  - { name: Cisco, provider: playwright, site: cisco }

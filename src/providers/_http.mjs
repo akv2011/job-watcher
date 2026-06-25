@@ -4,7 +4,7 @@
 // changed schema, anti-bot block) must never crash the whole run. Providers
 // catch their own errors and return [] — the runner logs and moves on.
 
-const DEFAULT_TIMEOUT_MS = 20_000;
+const DEFAULT_TIMEOUT_MS = 30_000;
 
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' +

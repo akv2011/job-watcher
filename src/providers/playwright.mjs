@@ -111,6 +111,24 @@ const SITES = {
       return out;
     },
   },
+  cisco: {
+    url: 'https://careers.cisco.com/global/en/search-results?keywords=software%20engineer',
+    waitSelector: 'a[href*="/global/en/job/"]',
+    extract: () => {
+      const seen = new Set(), out = [];
+      document.querySelectorAll('a[href*="/global/en/job/"]').forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        const m = href.match(/\/global\/en\/job\/(\d+)\/([A-Za-z0-9-]+)/);
+        if (!m) return;
+        const id = m[1];
+        if (seen.has(id)) return;
+        seen.add(id);
+        const t = (a.textContent || '').trim() || m[2].replace(/-/g, ' ');
+        out.push({ id, title: t, url: href.startsWith('http') ? href : 'https://careers.cisco.com' + href, location: '' });
+      });
+      return out;
+    },
+  },
   netflix: {
     // Eightfold: bot-blocks plain HTTP, but the in-page fetch (after the page
     // establishes a session) returns clean JSON.
