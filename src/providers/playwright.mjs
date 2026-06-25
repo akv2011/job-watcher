@@ -88,7 +88,9 @@ const SITES = {
         const id = m[1], t = (a.textContent || '').trim();
         if (seen.has(id) || !t) return;
         seen.add(id);
-        out.push({ id, title: t, url: 'https://www.uber.com/us/en/careers/list/' + id + '/', location: '' });
+        // root /careers/list/{id} redirects to the canonical /global/en/ job page;
+        // the old /us/en/.../ form 404s.
+        out.push({ id, title: t, url: 'https://www.uber.com/careers/list/' + id, location: '' });
       });
       return out;
     },
