@@ -370,6 +370,9 @@ companies:
   - { name: Yugabyte, provider: greenhouse, slug: yugabyte }
 
   # ── Forward-Deployed / misc ATS (verified 2026-06-26) ──
+  - { name: AstraZeneca, provider: workday, host: astrazeneca.wd3.myworkdayjobs.com, tenant: astrazeneca, site: Careers, searchText: "engineer" }
+  - { name: Sakana AI, provider: sakana }                          # Tokyo — FDE/research roles
+  - { name: Norm AI, provider: ashby, slug: norm-ai }
   - { name: Sezzle, provider: greenhouse, slug: sezzle }
   - { name: Lightbend (Akka), provider: jazzhr, slug: lightbend }   # Forward Deployed Engineer roles
   - { name: Lio, provider: personio, slug: turbalance }
