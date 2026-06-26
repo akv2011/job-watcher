@@ -330,6 +330,18 @@ companies:
   - { name: Kanmu, provider: herp, slug: kanmu }
   - { name: Woven by Toyota, provider: lever, slug: woven-by-toyota }
 
+  # ── Deep-research finds: dev-tools / AI / FDE (verified 2026-06-26) ──
+  - { name: Plaid, provider: ashby, slug: plaid }
+  - { name: dLocal, provider: lever, slug: dlocal }
+  - { name: Supermetrics, provider: greenhouse, slug: supermetricsoy }
+  - { name: Collibra, provider: greenhouse, slug: collibra }
+  - { name: C3 AI, provider: greenhouse, slug: c3iot }
+  - { name: Redpanda, provider: greenhouse, slug: redpandadata }
+  - { name: Harness, provider: greenhouse, slug: harnessinc }
+  - { name: JetBrains, provider: greenhouse, slug: jetbrains }
+  - { name: Mattermost, provider: greenhouse, slug: mattermost }
+  - { name: Exa, provider: ashby, slug: exa }
+
   # ── Payments / fintech (similar to Visa; verified 2026-06-26) ──
   - { name: Adyen, provider: greenhouse, slug: adyen }
   - { name: Block, provider: greenhouse, slug: block }
