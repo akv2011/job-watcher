@@ -330,6 +330,18 @@ companies:
   - { name: Kanmu, provider: herp, slug: kanmu }
   - { name: Woven by Toyota, provider: lever, slug: woven-by-toyota }
 
+  # ── Payments / fintech (similar to Visa; verified 2026-06-26) ──
+  - { name: Adyen, provider: greenhouse, slug: adyen }
+  - { name: Block, provider: greenhouse, slug: block }
+  - { name: Marqeta, provider: greenhouse, slug: marqeta }
+  - { name: Nubank, provider: greenhouse, slug: nubank }
+  - { name: GoCardless, provider: greenhouse, slug: gocardless }
+  - { name: Airwallex, provider: ashby, slug: airwallex }
+  - { name: BILL, provider: greenhouse, slug: billcom }
+  - { name: Toast, provider: greenhouse, slug: toast }
+  - { name: Payoneer, provider: greenhouse, slug: payoneer }
+  - { name: CRED, provider: lever, slug: cred }
+
   # ── Enterprise data / infra / security (verified 2026-06-26) ──
   - { name: Cohesity, provider: workday, host: cohesity.wd5.myworkdayjobs.com, tenant: cohesity, site: Cohesity_Careers, searchText: "engineer" }
   - { name: Rubrik, provider: greenhouse, slug: rubrik }
