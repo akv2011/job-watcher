@@ -345,6 +345,11 @@ companies:
   - { name: ClickHouse, provider: ashby, slug: clickhouse }
   - { name: Yugabyte, provider: greenhouse, slug: yugabyte }
 
+  # ── Forward-Deployed / misc ATS (verified 2026-06-26) ──
+  - { name: Sezzle, provider: greenhouse, slug: sezzle }
+  - { name: Lightbend (Akka), provider: jazzhr, slug: lightbend }   # Forward Deployed Engineer roles
+  - { name: Lio, provider: personio, slug: turbalance }
+
   # ── Big-tech / semiconductors (verified working over plain HTTP, 2026-06-23) ──
   - { name: Amazon, provider: amazon, query: "machine learning" }
   - { name: Microsoft, provider: eightfold, host: apply.careers.microsoft.com, domain: microsoft.com, query: "AI" }
