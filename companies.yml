@@ -374,6 +374,8 @@ companies:
   - { name: Dentsu, provider: workday, host: dentsuaegis.wd3.myworkdayjobs.com, tenant: dentsuaegis, site: DAN_GLOBAL, searchText: "engineer" }
   - { name: Sakana AI, provider: sakana }                          # Tokyo — FDE/research roles
   - { name: Norm AI, provider: ashby, slug: norm-ai }
+  - { name: Bright Money, provider: kula, slug: brightmoney }      # India fintech (Bengaluru)
+  - { name: D.E. Shaw, provider: deshaw }                          # quant; large Hyderabad/India office
   - { name: Sezzle, provider: greenhouse, slug: sezzle }
   - { name: Lightbend (Akka), provider: jazzhr, slug: lightbend }   # Forward Deployed Engineer roles
   - { name: Lio, provider: personio, slug: turbalance }
