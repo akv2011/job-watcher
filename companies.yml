@@ -349,6 +349,8 @@ companies:
   - { name: Samsung Research America, provider: greenhouse, slug: samsungresearchamerica }
   - { name: Thoughtworks, provider: greenhouse, slug: thoughtworks }
   - { name: Sony PlayStation, provider: greenhouse, slug: sonyinteractiveentertainmentglobal }
+  - { name: Avathon, provider: greenhouse, slug: avathon }         # industrial AI
+  - { name: Bruker, provider: icims, slug: bruker, query: "engineer" }   # scientific instruments — bias to eng/AI
   - { name: Hitachi, provider: workday, host: hitachi.wd1.myworkdayjobs.com, tenant: hitachi, site: hitachi, searchText: "engineer" }
 
   # ── Payments / fintech (similar to Visa; verified 2026-06-26) ──
