@@ -342,6 +342,13 @@ companies:
   - { name: Mattermost, provider: greenhouse, slug: mattermost }
   - { name: Exa, provider: ashby, slug: exa }
 
+  # ── Conglomerates / consultancies (verified 2026-06-27) ──
+  - { name: Branch International, provider: jazzhr, slug: branchinternational }   # India fintech (branch.co)
+  - { name: Samsung, provider: workday, host: sec.wd3.myworkdayjobs.com, tenant: sec, site: Samsung_Careers, searchText: "engineer" }
+  - { name: Samsung Next, provider: greenhouse, slug: samsungnext }
+  - { name: Samsung Research America, provider: greenhouse, slug: samsungresearchamerica }
+  - { name: Thoughtworks, provider: greenhouse, slug: thoughtworks }
+
   # ── Payments / fintech (similar to Visa; verified 2026-06-26) ──
   - { name: Adyen, provider: greenhouse, slug: adyen }
   - { name: Block, provider: greenhouse, slug: block }
