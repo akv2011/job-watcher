@@ -76,16 +76,15 @@ filter:
     - "Mainframe"
     - "COBOL"
     - "Salesforce Admin"
-    # -- Seniority: out of scope for an early-career search --
-    - "Senior"
-    - "Sr."
-    - "Staff "          # trailing space → "Staff Engineer" but not "Member of Technical Staff"
+    # -- Exec / very-senior only (Senior/Staff/Lead now ALLOWED — see-and-judge,
+    #    e.g. "Staff AI Engineer, Chennai"). Only drop management/exec tier. --
     - "Principal"
-    - "Lead "           # "Lead Engineer" but not "Leadership"/"Team Lead"
     - "Director"
     - "Head of"
     - "Vice President"
     - "Distinguished"
+    - "VP "
+    - "Chief "
   # Location: drop US ON-SITE roles (can't relocate without remote). Keep remote
   # (anywhere), India, and non-US on-site (Japan/EU — those sponsor relocation).
   # always_allow (Remote) wins over block; empty location always passes.
@@ -349,6 +348,8 @@ companies:
   - { name: Samsung Next, provider: greenhouse, slug: samsungnext }
   - { name: Samsung Research America, provider: greenhouse, slug: samsungresearchamerica }
   - { name: Thoughtworks, provider: greenhouse, slug: thoughtworks }
+  - { name: Sony PlayStation, provider: greenhouse, slug: sonyinteractiveentertainmentglobal }
+  - { name: Hitachi, provider: workday, host: hitachi.wd1.myworkdayjobs.com, tenant: hitachi, site: hitachi, searchText: "engineer" }
 
   # ── Payments / fintech (similar to Visa; verified 2026-06-26) ──
   - { name: Adyen, provider: greenhouse, slug: adyen }
