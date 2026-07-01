@@ -84,7 +84,10 @@ const SITES = {
     wait: 3500,
     extract: async () => {
       const out = [];
-      for (let page = 0; page < 2; page++) {
+      // API returns all jobs newest-first (query param is ignored, no working
+      // location filter), 10/page. Pull 6 pages (~60 newest) to widen the odds
+      // of catching non-US (India) roles before dedup + the location filter.
+      for (let page = 0; page < 6; page++) {
         const r = await fetch(`/api/jobs/search?query=engineer&locale=en&page=${page}`, { headers: { accept: 'application/json' } });
         if (!r.ok) break;
         const j = await r.json();
