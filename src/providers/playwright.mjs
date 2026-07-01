@@ -78,20 +78,26 @@ const SITES = {
     },
   },
   uber: {
-    url: 'https://www.uber.com/us/en/careers/list/?query=engineer',
-    waitSelector: 'a[href*="/careers/list/"]',
-    extract: () => {
-      const seen = new Set(), out = [];
-      document.querySelectorAll('a[href*="/careers/list/"]').forEach((a) => {
-        const m = (a.getAttribute('href') || '').match(/\/careers\/list\/(\d+)/);
-        if (!m) return;
-        const id = m[1], t = (a.textContent || '').trim();
-        if (seen.has(id) || !t) return;
-        seen.add(id);
-        // root /careers/list/{id} redirects to the canonical /global/en/ job page;
-        // the old /us/en/.../ form 404s.
-        out.push({ id, title: t, url: 'https://www.uber.com/careers/list/' + id, location: '' });
-      });
+    // Uber moved careers to jobs.uber.com. Its /api/jobs/search is Cloudflare-
+    // blocked over plain HTTP, but works from an in-page fetch (like Netflix).
+    url: 'https://jobs.uber.com/en/jobs/?query=engineer',
+    wait: 3500,
+    extract: async () => {
+      const out = [];
+      for (let page = 0; page < 2; page++) {
+        const r = await fetch(`/api/jobs/search?query=engineer&locale=en&page=${page}`, { headers: { accept: 'application/json' } });
+        if (!r.ok) break;
+        const j = await r.json();
+        const jobs = j.jobs || [];
+        for (const x of jobs) {
+          const L = x.Locations;
+          const loc = Array.isArray(L)
+            ? L.map((o) => (typeof o === 'string' ? o : [o.City || o.city, o.CountryName || o.Region || o.country].filter(Boolean).join(', '))).filter(Boolean).join('; ')
+            : '';
+          out.push({ id: String(x.Id), title: x.Title, url: 'https://jobs.uber.com/en/jobs/' + x.Id + '/', location: loc });
+        }
+        if (jobs.length < 10) break;
+      }
       return out;
     },
   },
