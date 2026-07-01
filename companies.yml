@@ -411,6 +411,7 @@ companies:
   - { name: Mastercard, provider: workday, host: mastercard.wd1.myworkdayjobs.com, tenant: mastercard, site: CorporateCareers, searchText: "engineer" }
   - { name: BlackRock, provider: workday, host: blackrock.wd1.myworkdayjobs.com, tenant: blackrock, site: BlackRock_Professional, searchText: "engineer" }
   - { name: Deutsche Bank, provider: workday, host: db.wd3.myworkdayjobs.com, tenant: db, site: DBWebsite, searchText: "engineer" }
+  - { name: S&P Global, provider: workday, host: spgi.wd5.myworkdayjobs.com, tenant: spgi, site: SPGI_Careers, searchText: "engineer" }
   - { name: American Express, provider: oracle, host: egug.fa.us2.oraclecloud.com, site: CX_1, jobUrlBase: "https://careers.americanexpress.com/en/sites/CX_1/job" }
   - { name: Capital One, provider: workday, host: capitalone.wd12.myworkdayjobs.com, tenant: capitalone, site: Capital_One, searchText: "engineer" }
   - { name: PNC, provider: workday, host: pnc.wd5.myworkdayjobs.com, tenant: pnc, site: External, searchText: "engineer" }
