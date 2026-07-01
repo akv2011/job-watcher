@@ -18,7 +18,9 @@ export default async function fetchWorkday(entry) {
   const out = [];
   // Pull the most recent page or two — cron runs hourly, so we only need the
   // newest postings, not the entire (often thousands-deep) board.
-  for (let offset = 0; offset < 40; offset += 20) {
+  // Workday returns newest-first with regions interleaved; pull ~80 newest so
+  // large boards don't cut off recent roles in non-US regions.
+  for (let offset = 0; offset < 80; offset += 20) {
     let data;
     try {
       data = await postJSON(`https://${host}/wday/cxs/${tenant}/${site}/jobs`, {
