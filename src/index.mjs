@@ -108,6 +108,7 @@ async function pool(items, limit, worker) {
 
 async function fetchAll(companies) {
   const errors = [];
+  const counts = []; // per non-errored company: { name, n } (raw fetched count)
   const rows = await pool(companies, CONCURRENCY, async (entry) => {
     const provider = PROVIDERS[entry.provider];
     if (!provider) {
@@ -115,14 +116,15 @@ async function fetchAll(companies) {
       return [];
     }
     try {
-      const jobs = await provider(entry);
-      return jobs.filter((j) => j.url && j.title);
+      const jobs = (await provider(entry)).filter((j) => j.url && j.title);
+      counts.push({ name: entry.name, n: jobs.length });
+      return jobs;
     } catch (err) {
       errors.push({ name: entry.name, error: err.message });
       return [];
     }
   });
-  return { jobs: rows.flat(), errors };
+  return { jobs: rows.flat(), errors, counts };
 }
 
 async function sendTestAlert() {
@@ -142,6 +144,7 @@ async function sendTestAlert() {
 // ── Provider health: email once when a company is persistently broken ──
 const HEALTH_PATH = path.join(ROOT, 'state', 'health.json');
 const FAIL_THRESHOLD = 3; // consecutive failed runs (~3 hours) before alerting
+const ZERO_THRESHOLD = 24; // consecutive 0-job runs (~1 day) before flagging a company that USED to return jobs (catches silent breakage like a site migration)
 
 function loadHealth() {
   try { return JSON.parse(readFileSync(HEALTH_PATH, 'utf-8')) || {}; } catch { return {}; }
@@ -157,12 +160,14 @@ function esc(s) {
 // Increment a per-company consecutive-failure counter; reset on success. When a
 // company crosses FAIL_THRESHOLD it's reported once (not every run) so transient
 // timeouts don't spam, but real breakage reaches you.
-async function trackHealth(companies, errors) {
+async function trackHealth(companies, errors, counts) {
   const health = loadHealth();
   const errMap = new Map(errors.map((e) => [e.name, e.error]));
-  const newlyBroken = [];
+  const countMap = new Map((counts || []).map((c) => [c.name, c.n]));
+  const newlyBroken = []; // hard errors (FAIL_THRESHOLD in a row)
+  const newlyStale = []; // returned 0 jobs for ZERO_THRESHOLD in a row (was returning jobs before)
   for (const c of companies) {
-    const rec = health[c.name] || { fails: 0, notified: false };
+    const rec = health[c.name] || { fails: 0, notified: false, zeros: 0, zeroNotified: false, everReturned: false };
     if (errMap.has(c.name)) {
       rec.fails = (rec.fails || 0) + 1;
       rec.lastError = errMap.get(c.name);
@@ -172,30 +177,45 @@ async function trackHealth(companies, errors) {
       }
     } else {
       rec.fails = 0; rec.notified = false; delete rec.lastError;
+      const n = countMap.get(c.name) ?? 0;
+      if (n > 0) {
+        rec.everReturned = true; rec.zeros = 0; rec.zeroNotified = false;
+      } else if (rec.everReturned) {
+        // 0 jobs now, but this company USED to return jobs → possible silent breakage
+        rec.zeros = (rec.zeros || 0) + 1;
+        if (rec.zeros >= ZERO_THRESHOLD && !rec.zeroNotified) {
+          newlyStale.push({ name: c.name, zeros: rec.zeros });
+          rec.zeroNotified = true;
+        }
+      }
     }
     health[c.name] = rec;
   }
   saveHealth(health);
-  if (!newlyBroken.length) return;
+  if (!newlyBroken.length && !newlyStale.length) return;
 
-  console.log(`\n🔧 ${newlyBroken.length} company(ies) newly broken — notifying.`);
-  const n = newlyBroken.length;
-  const subject = `🔧 job-watcher: ${n} compan${n === 1 ? 'y needs' : 'ies need'} a fix`;
-  const text =
-    `These companies have failed ${FAIL_THRESHOLD}+ scans in a row and aren't being checked until fixed:\n\n` +
-    newlyBroken.map((b) => `• ${b.name} (${b.fails} runs)\n  ${b.error}`).join('\n\n') +
-    `\n\nLikely the site's feed or page layout changed — its provider config needs updating.`;
+  const parts = [];
+  if (newlyBroken.length) parts.push(`${newlyBroken.length} erroring`);
+  if (newlyStale.length) parts.push(`${newlyStale.length} returning 0 jobs`);
+  console.log(`\n🔧 job-watcher health: ${parts.join(', ')} — notifying.`);
+  const subject = `🔧 job-watcher: ${parts.join(' + ')} — verify`;
+  const brokenTxt = newlyBroken.length
+    ? `Erroring ${FAIL_THRESHOLD}+ runs in a row (paused until fixed):\n` + newlyBroken.map((b) => `• ${b.name} (${b.fails} runs) — ${b.error}`).join('\n') + '\n\n'
+    : '';
+  const staleTxt = newlyStale.length
+    ? `Returning 0 jobs for ${ZERO_THRESHOLD}+ runs (may be broken, or just no openings — verify):\n` + newlyStale.map((s) => `• ${s.name} (${s.zeros} runs at 0)`).join('\n') + '\n\n'
+    : '';
+  const text = brokenTxt + staleTxt + `A site feed/layout change usually causes this — the provider may need updating.`;
   const html =
-    `<h2>${n} compan${n === 1 ? 'y needs' : 'ies need'} a fix</h2>` +
-    `<p>Failed ${FAIL_THRESHOLD}+ runs in a row — paused until fixed:</p><ul>` +
-    newlyBroken.map((b) => `<li><b>${esc(b.name)}</b> &mdash; ${b.fails} runs<br><code>${esc(b.error)}</code></li>`).join('') +
-    `</ul><p>The site's feed or layout likely changed; its provider needs updating.</p>`;
+    (newlyBroken.length ? `<h3>Erroring (${FAIL_THRESHOLD}+ runs)</h3><ul>` + newlyBroken.map((b) => `<li><b>${esc(b.name)}</b> — <code>${esc(b.error)}</code></li>`).join('') + '</ul>' : '') +
+    (newlyStale.length ? `<h3>Returning 0 jobs (${ZERO_THRESHOLD}+ runs — verify)</h3><ul>` + newlyStale.map((s) => `<li><b>${esc(s.name)}</b> — ${s.zeros} runs at 0</li>`).join('') + '</ul>' : '') +
+    `<p>A site feed/layout change usually causes this; the provider may need updating.</p>`;
   if (emailConfigured()) {
     try { if (await sendEmail({ subject, html, text })) console.log('  ✓ maintenance email sent'); }
     catch (e) { console.error(`  ✗ maintenance email failed: ${e.message}`); }
   }
   if (telegramConfigured()) {
-    try { await sendTelegram('🔧 <b>job-watcher needs a fix</b>\n' + newlyBroken.map((b) => `• ${esc(b.name)}: ${esc(b.error)}`).join('\n')); }
+    try { await sendTelegram('🔧 <b>job-watcher health</b>\n' + text); }
     catch (e) { console.error(`  ✗ maintenance telegram failed: ${e.message}`); }
   }
 }
@@ -208,7 +228,7 @@ async function main() {
 
   const cfg = loadConfig();
   console.log(`Scanning ${cfg.companies.length} companies…`);
-  const { jobs, errors } = await fetchAll(cfg.companies);
+  const { jobs, errors, counts } = await fetchAll(cfg.companies);
 
   const matched = jobs.filter((j) => keepJob(j, cfg.filter || {}));
   console.log(`Fetched ${jobs.length} jobs, ${matched.length} match the title filter.`);
@@ -234,7 +254,7 @@ async function main() {
 
   // Health check: alert on persistently-broken companies (runs even on quiet
   // hours so breakage reaches you). Skipped for dry-run / single-company runs.
-  if (!DRY_RUN && !companyFilter) await trackHealth(cfg.companies, errors);
+  if (!DRY_RUN && !companyFilter) await trackHealth(cfg.companies, errors, counts);
 
   // Group new jobs by company for the alert body.
   const byCompany = {};
