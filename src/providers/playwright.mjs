@@ -181,6 +181,23 @@ const SITES = {
       return out;
     },
   },
+  hsbc: {
+    // HSBC on Eightfold; pcsx is 403 but /api/apply/v2/jobs works from an in-page
+    // fetch. Big India tech org (Pune/Hyderabad/Bangalore).
+    url: 'https://hsbc.eightfold.ai/careers?query=engineer',
+    wait: 3500,
+    extract: async () => {
+      const r = await fetch('/api/apply/v2/jobs?domain=hsbc.com&query=engineer&sort_by=timestamp&start=0&num=50', { headers: { accept: 'application/json' } });
+      const j = await r.json();
+      const p = j.positions || (j.data && j.data.positions) || [];
+      return p.map((x) => ({
+        id: String(x.id),
+        title: x.name,
+        url: x.canonicalPositionUrl || x.positionUrl || 'https://portal.careers.hsbc.com/careers/job/' + x.id,
+        location: Array.isArray(x.locations) ? x.locations.join('; ') : x.location || '',
+      }));
+    },
+  },
   netflix: {
     // Eightfold: bot-blocks plain HTTP, but the in-page fetch (after the page
     // establishes a session) returns clean JSON.

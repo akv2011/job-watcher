@@ -385,6 +385,7 @@ companies:
   - { name: Dentsu, provider: workday, host: dentsuaegis.wd3.myworkdayjobs.com, tenant: dentsuaegis, site: DAN_GLOBAL, searchText: "engineer" }
   - { name: Sakana AI, provider: sakana }                          # Tokyo — FDE/research roles
   - { name: Norm AI, provider: ashby, slug: norm-ai }
+  - { name: Keycard, provider: greenhouse, slug: keycard }         # AI-agent identity infra; SWE/AI/FDE (board empty between postings)
   - { name: Bright Money, provider: kula, slug: brightmoney }      # India fintech (Bengaluru)
   - { name: D.E. Shaw, provider: deshaw }                          # quant; large Hyderabad/India office
   - { name: Sezzle, provider: greenhouse, slug: sezzle }
@@ -412,6 +413,9 @@ companies:
   - { name: BlackRock, provider: workday, host: blackrock.wd1.myworkdayjobs.com, tenant: blackrock, site: BlackRock_Professional, searchText: "engineer" }
   - { name: Deutsche Bank, provider: workday, host: db.wd3.myworkdayjobs.com, tenant: db, site: DBWebsite, searchText: "engineer" }
   - { name: S&P Global, provider: workday, host: spgi.wd5.myworkdayjobs.com, tenant: spgi, site: SPGI_Careers, searchText: "engineer" }
+  - { name: Pfizer, provider: workday, host: pfizer.wd1.myworkdayjobs.com, tenant: pfizer, site: PfizerCareers, searchText: "engineer" }
+  - { name: Rockwell Automation, provider: workday, host: rockwellautomation.wd1.myworkdayjobs.com, tenant: rockwellautomation, site: External_Rockwell_Automation, searchText: "engineer" }
+  - { name: Rockwell Early Careers, provider: workday, host: rockwellautomation.wd1.myworkdayjobs.com, tenant: rockwellautomation, site: External-Rockwell-Automation-Early-Careers, searchText: "" }
   - { name: American Express, provider: oracle, host: egug.fa.us2.oraclecloud.com, site: CX_1, jobUrlBase: "https://careers.americanexpress.com/en/sites/CX_1/job" }
   - { name: Capital One, provider: workday, host: capitalone.wd12.myworkdayjobs.com, tenant: capitalone, site: Capital_One, searchText: "engineer" }
   - { name: PNC, provider: workday, host: pnc.wd5.myworkdayjobs.com, tenant: pnc, site: External, searchText: "engineer" }
@@ -434,5 +438,6 @@ companies:
   - { name: Netflix, provider: playwright, site: netflix }
   - { name: Wells Fargo, provider: playwright, site: wellsfargo }
   - { name: Cisco, provider: playwright, site: cisco }
+  - { name: HSBC, provider: playwright, site: hsbc }               # Eightfold; big India tech org
   # Live YC firehose — recent eng roles across ALL YC companies (auto-includes new ones)
   - { name: YC, provider: playwright, site: yc }
