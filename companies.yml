@@ -385,7 +385,7 @@ companies:
   - { name: Dentsu, provider: workday, host: dentsuaegis.wd3.myworkdayjobs.com, tenant: dentsuaegis, site: DAN_GLOBAL, searchText: "engineer" }
   - { name: Sakana AI, provider: sakana }                          # Tokyo — FDE/research roles
   - { name: Norm AI, provider: ashby, slug: norm-ai }
-  - { name: Keycard, provider: greenhouse, slug: keycard }         # AI-agent identity infra; SWE/AI/FDE (board empty between postings)
+  - { name: Keycard, provider: ashby, slug: keycard-labs }         # AI-agent identity infra; SWE/AI/FDE (greenhouse:keycard was a same-name decoy)
   - { name: Bright Money, provider: kula, slug: brightmoney }      # India fintech (Bengaluru)
   - { name: D.E. Shaw, provider: deshaw }                          # quant; large Hyderabad/India office
   - { name: Sezzle, provider: greenhouse, slug: sezzle }
