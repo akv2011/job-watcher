@@ -181,6 +181,27 @@ const SITES = {
       return out;
     },
   },
+  uhg: {
+    // UnitedHealth Group / Optum on TalentBrew (Radancy). Not bot-blocked, but the
+    // results endpoint returns empty without a page session — so load the page,
+    // then call it in-page. Company 34088 covers UHG + Optum. India roles included.
+    url: 'https://careers.unitedhealthgroup.com/search-jobs/engineer',
+    waitSelector: 'a[href*="/job/"]',
+    extract: () => {
+      const seen = new Set(), out = [];
+      const cap = (s) => s.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      document.querySelectorAll('a[href*="/job/"]').forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        const m = href.match(/\/job\/([a-z0-9-]+)\/([a-z0-9-]+)\/(\d+)\/(\d+)/i);
+        if (!m) return;
+        const id = m[4];
+        if (seen.has(id)) return;
+        seen.add(id);
+        out.push({ id, title: cap(m[2]), url: 'https://careers.unitedhealthgroup.com' + href, location: cap(m[1]) });
+      });
+      return out;
+    },
+  },
   hsbc: {
     // HSBC on Eightfold; pcsx is 403 but /api/apply/v2/jobs works from an in-page
     // fetch. Big India tech org (Pune/Hyderabad/Bangalore).

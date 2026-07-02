@@ -439,5 +439,6 @@ companies:
   - { name: Wells Fargo, provider: playwright, site: wellsfargo }
   - { name: Cisco, provider: playwright, site: cisco }
   - { name: HSBC, provider: playwright, site: hsbc }               # Eightfold; big India tech org
+  - { name: UnitedHealth / Optum, provider: playwright, site: uhg }   # TalentBrew; India roles (Bengaluru)
   # Live YC firehose — recent eng roles across ALL YC companies (auto-includes new ones)
   - { name: YC, provider: playwright, site: yc }
